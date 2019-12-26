@@ -1,14 +1,14 @@
 import React from 'react';
-import { StyleSheet, View, Button} from 'react-native';
+import { StyleSheet, Text, View, Button} from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
 const Homepage: React.FC = () => {
     const navigation = useNavigation();
     return (
         <View style={styles.overallStyle}>
-            <Button color="#fff" title="Login" onPress={() => navigation.navigate('Login')} />
+            <Button color="#64CDA2" title="Login" onPress={() => navigation.navigate('Login')}><Text>Login</Text></Button>
         </View>
-    );
+    )
 };
 
 const styles = StyleSheet.create({
