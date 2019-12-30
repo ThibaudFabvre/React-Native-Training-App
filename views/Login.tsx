@@ -10,12 +10,10 @@ const Login: React.FC  = () => {
     return (
         <View style={styles.overallStyle}>
             <View style={styles.topPart}>
-                <View style={styles.headerBlock}>
-                    <Text style={styles.titleImage}>F</Text>
-                    <Text style={styles.title}>FLAT APP</Text>
-                </View>
+                <Text style={styles.titleImage}>F</Text>
+                <Text style={styles.title}>FLAT APP</Text>
             </View>
-            <View style={styles.bottomPart}>
+            <View style={styles.middlePart}>
                 <TextInput style={styles.centeredInput} onChangeText={newEmail => setEmailInput(newEmail)} value={emailInput}/>
                 <TextInput style={styles.centeredInput} onChangeText={newPassword => setPasswordInput(newPassword)} value={passwordInput}/>
                 <TouchableHighlight style={styles.buttonWrapper} onPress={() => navigation.navigate('Homepage')}>
@@ -25,6 +23,8 @@ const Login: React.FC  = () => {
                     <Text style={styles.optionText}>Create account</Text>
                     <Text style={styles.optionText}>Forgot password</Text>
                 </View>
+            </View>
+            <View style={styles.bottomPart}>
                 <TouchableHighlight style={styles.skipButtonWrapper} onPress={() => navigation.navigate('Homepage')}>
                     <Text style={styles.skipText}>Skip</Text>
                 </TouchableHighlight>
@@ -36,7 +36,6 @@ const Login: React.FC  = () => {
 const styles = StyleSheet.create({
     overallStyle: {
         backgroundColor: '#427957',
-        justifyContent: 'space-around',
         flex: 1,
     },
     buttonText: {
@@ -55,9 +54,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         marginBottom: -20,
-    },
-    headerBlock: {
-        height: 300,
     },
     centeredInput: {
         fontSize: 16,
@@ -89,30 +85,35 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 25,
     },
+    topPart: {
+        height: '50%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    // middle part
+    middlePart: {
+        height: '40%',
+    },
+    // bottom part
+    bottomPart: {
+        height: '10%',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+    },
     skipButtonWrapper: {
         width: 80,
-        alignSelf: "flex-end",
         padding: 10,
         borderRadius: 5,
         borderColor: '#fff',
         borderWidth: 1,
         backgroundColor: 'rgba(41,55,58,0.4)',
-        position: 'absolute',
-        bottom: 25,
-        right: 25,
+        marginRight: 25,
     },
     skipText: {
         color: '#fff',
         textAlign: 'center',
         fontWeight: 'bold',
     },
-    topPart: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    bottomPart: {
-        flex: 1,
-    }
 });
 
 export default Login;

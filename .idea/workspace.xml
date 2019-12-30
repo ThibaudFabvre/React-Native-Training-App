@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="959d85fb-10b4-425f-a379-e0bae1f4bd10" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/views/Login.tsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,6 +58,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -71,7 +71,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
