@@ -1,50 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text} from 'react-native';
+import { getTasksList, addTaskToDatabase } from '../api/tasklist';
 import { List } from '.';
 import { TextInput, TouchableHighlight } from 'react-native-gesture-handler';
 
 
-/*const taskListRef = firebase.database().ref('TasksList');
-const getTasksList = () => {
-    taskListRef.on('value', (snapshot) => {
-        return snapshot.val();
-    })
-}*/
-
-const list = [
-    {title: 'hi', resume: 'hi', status:'to do'}, 
-    {title: 'hi', resume: 'hi', status: 'in progress'}, 
-    {title: 'hi', resume: 'hi', status: 'done'}
-];
-
 const TaskManager: React.FC = () => {
 
-    const [toDoList, setToDoList] = useState(list.filter(element => element.status === 'to do'))
-    const [inProgressList, setInProgressList]= useState(list.filter( element => element.status === 'in progress'))
-    const [doneList, setDoneList] = useState(list.filter(element => element.status === 'done'))
-
+    const [tasksList , setTasksList] = useState([{}]);
+    const [toDoList, setToDoList] = useState(tasksList.filter(element => element.status === 'to do'))
+    const inProgressList = tasksList.filter( element => element.status === 'in progress')
+    const doneList = tasksList.filter(element => element.status === 'done')
     const [titleInput, setTitleInput] = useState();
     const [resumeInput, setResumeInput] = useState();
 
+    useEffect(() => {
+        const newFunc = async () => {
+            const tasks = await getTasksList();
+            const newTasksList = [];
+            tasks.forEach(task => {
+                const title = task.child('title').val();
+                const resume = task.child('resume').val();
+                const status = task.child('status').val();
+                newTasksList.push({
+                    title: title,
+                    resume: resume,
+                    status: status
+                })
+            })
+            setTasksList(newTasksList);
+        };
+        try {
+            newFunc();
+        } catch {
+            'error in fetching tasks list'
+        }
+    },[]);
+
     const addTask = () => {
-        console.log(resumeInput);
-        console.log(toDoList.push({ title: titleInput, resume: resumeInput, status: 'to do'}));
+        setToDoList(toDoList.concat({ title: titleInput, resume: resumeInput, status: 'to do'}));
+        addTaskToDatabase({ title: titleInput, resume: resumeInput, status: 'to do'});
     }
-/*
-    const addTask = () => {
-        const titleInputValue = titleInput.current.value();
-        const resumeInputValue = resumeInput.current.value();
-        firebase.database().ref('TaskList/').push({
-            titleInputValue,
-            resumeInputValue
-        }).then((data)=>{
-            //success callback
-            console.log('data ' , data)
-        }).catch((error)=>{
-            //error callback
-            console.log('error ' , error)
-        })
-    } */
 
     return (
         <View style={{flex: 1}}>
@@ -57,18 +53,17 @@ const TaskManager: React.FC = () => {
                 <TextInput 
                     style={{ borderColor: '#000', borderWidth: 1, width: '80%', paddingLeft: 10}}
                     placeholder='title'
-                    onChange={ input => {
-                        console.log(input);
+                    onChangeText={ input => {
                         setTitleInput(input)
                     }}
                     />
                 <TextInput 
                     style={{ borderColor: '#000', borderWidth: 1, width: '80%', paddingLeft: 10}} 
                     placeholder='resume' 
-                    onChange={ input => setResumeInput(input)}
+                    onChangeText={ input => setResumeInput(input)}
                     />
-                <TouchableHighlight onPress={() => addTask()}>
-                    <Text>+</Text>
+                <TouchableHighlight style={{backgroundColor: '#BFFF00'}} onPress={() => addTask()}>
+                    <Text style={{fontWeight: 'bold'}}>Add task</Text>
                 </TouchableHighlight>
             </View>
         </View>

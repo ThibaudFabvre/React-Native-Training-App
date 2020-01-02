@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="959d85fb-10b4-425f-a379-e0bae1f4bd10" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/List.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/views/List.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/Task.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/views/Task.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/TaskManager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/views/TaskManager.tsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
